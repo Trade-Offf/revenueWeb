@@ -11,14 +11,15 @@ async function initGetTradeList() {
   }
 }
 
-async function getRenevueList() {
+async function getRenevueList(params) {
+  const { txPairs, startDate, endDate } = params;
   const response = await request.post(
     '/quant/ema',
     qs.stringify({
-      txPairs: 'BTC-USDT,ETH-USDT',
+      txPairs: txPairs,
       kLineType: '1h',
-      startDate: '2023-01-01',
-      endDate: '2023-06-01',
+      startDate: startDate,
+      endDate: endDate,
       shortEma: 5,
       longEma: 20,
       filterRevenueRate: 0,

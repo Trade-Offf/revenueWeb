@@ -1,16 +1,29 @@
 'use client';
-import { DatePicker } from 'antd';
+import { DatePicker, Button } from 'antd';
 import { useState, useEffect } from 'react';
-import { Container } from '@/components';
+import dayjs from 'dayjs';
 import Chart from './Chart';
 import PopverBox from './PopverBox';
+import { Container } from '@/components';
+import { initGetTradeList, getRenevueList } from '@/pages/api/revenue';
 import styles from './index.module.scss';
 const { RangePicker } = DatePicker;
-import { initGetTradeList, getRenevueList } from '@/pages/api/revenue';
+
+const dateFormat = 'YYYY-MM-DD';
 
 const Revenue = () => {
   const [tradeList, setTradeList] = useState([]);
   const [revenueData, setRevenueData] = useState({});
+  const [selectDate, setSelectDate] = useState({
+    startDate: '2023-01-01',
+    endDate: '2023-06-01',
+  });
+  const [txPairs, setTxPairs] = useState('BTC-USDT');
+
+  const params = {
+    txPairs,
+    ...selectDate,
+  };
 
   useEffect(() => {
     initGetTradeList()
@@ -21,17 +34,31 @@ const Revenue = () => {
         console.log(err);
       });
 
-    getRenevueList().then((res) => {
+    getRenevueList(params).then((res) => {
       setRevenueData(res);
     });
   }, []);
 
-  // 选择回测时间范围
-  // const onDateChange = (value, dateString) => {
-  //   startTime = dateString?.[0];
-  //   endTime = dateString?.[1];
-  //   console.log('Formatted Selected Time: ', startTime, endTime);
-  // };
+  const onRangeChange = (dates, dateStrings) => {
+    if (dates) {
+      setSelectDate({
+        startDate: dateStrings[0],
+        endDate: dateStrings[1],
+      });
+    } else {
+      setSelectDate({
+        startDate: '',
+        endDate: '',
+      });
+    }
+  };
+
+  const onBtnClick = () => {
+    console.log('params', params);
+    getRenevueList(params).then((res) => {
+      setRevenueData(res);
+    });
+  };
 
   return (
     <Container>
@@ -39,8 +66,21 @@ const Revenue = () => {
         <h2 className={styles.text}>ema数据回测</h2>
 
         <div className={styles.right_box}>
-          <RangePicker />
-          <PopverBox tradeList={tradeList} />
+          <RangePicker
+            defaultValue={[
+              dayjs('2023-01-01', dateFormat),
+              dayjs('2023-06-01', dateFormat),
+            ]}
+            onChange={onRangeChange}
+          />
+          <PopverBox
+            tradeList={tradeList}
+            txPairs={txPairs}
+            setTxPairs={setTxPairs}
+          />
+          <Button type='primary' className={styles.btn} onClick={onBtnClick}>
+            开始回测
+          </Button>
         </div>
       </section>
       <section className={styles.content}>
