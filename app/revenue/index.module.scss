@@ -1,0 +1,39 @@
+.title{
+  @extend .flex-y-center;
+  position: relative;
+  width: 90vw;
+  height: 50px;
+  margin: 0 auto;
+  border: 2px solid #e8e8e8;
+  border-radius: 6px;
+  color: #213547;
+  background-color: #F1F1F1;
+
+  .text{
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 20px;
+  }
+  .right_box{
+    position: absolute;
+    right: 20px;
+    .btn{
+      margin-left: 20px;
+    }
+  }
+}
+
+.content{
+  width: 90vw;
+  height: 60vh;
+  margin: 24px auto;
+  border: 2px solid #e8e8e8;
+  border-radius: 6px;
+  background-color: #F1F1F1;
+}
+
+.flex-y-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
