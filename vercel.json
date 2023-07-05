@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "quant/(.*)",
+      "destination": "http://43.133.186.198:7001/quant/$1"
+    }
+  ]
+}
