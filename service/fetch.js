@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+// TODO 区分线上线下环境
 const requestInstance = axios.create({
-  baseURL: 'http://43.133.186.198:7001',
+  baseURL: 'https://revenue-web.vercel.app',
 });
 
 requestInstance.interceptors.request.use(
