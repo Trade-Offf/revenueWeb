@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-// TODO 区分线上线下环境
 const requestInstance = axios.create({
-  baseURL: 'https://revenue-web.vercel.app',
+  // 区分线上线下环境
+  baseURL:
+    process.env.NODE_ENV === 'production'
+      ? 'https://revenue-web.vercel.app'
+      : 'http://43.133.186.198:7001',
 });
 
 requestInstance.interceptors.request.use(

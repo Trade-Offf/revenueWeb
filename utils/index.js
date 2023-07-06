@@ -20,6 +20,7 @@ function getChartDate(data) {
 function getXYData(chartList) {
   let xAxisDateList = [];
   let seriesList = [];
+  // TODO 总线和单线的单线数据结构不一样，需要统一（改用两个函数处理）
   chartList[0]?.revenueList?.map((item) => {
     const month = item?.date.substring(4, 6);
     const day = item?.date.substring(6, 8);

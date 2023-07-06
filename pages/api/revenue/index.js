@@ -3,7 +3,7 @@ import qs from 'qs';
 // 初始化交易对列表
 
 async function initGetTradeList() {
-  const response = await request.post('quant/listTxPairs', {
+  const response = await request.post('/quant/listTxPairs', {
     kLineType: '1h',
   });
   if (response.code === 200) {

@@ -1,10 +1,7 @@
 'use client';
 
-import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
 import { getXYData, getChartDate } from '@/utils';
-
-// export const dynamicParams = false;
 
 const Chart = (props) => {
   const { revenueData, tradeList } = props;
@@ -41,7 +38,6 @@ const Chart = (props) => {
 
   return (
     <ReactECharts
-      echarts={echarts}
       option={option}
       style={{ height: '100%' }}
     />
