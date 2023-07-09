@@ -29,7 +29,7 @@ function getXYData(chartList) {
     const day = item?.date.substring(6, 8);
     xAxisDateList.push(`${month}-${day}`);
   });
-  chartList?.map((item) => {
+  chartList && chartList.map((item) => {
     const { revenueList } = item;
     let yAxisDateList = [];
 
