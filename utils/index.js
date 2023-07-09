@@ -7,20 +7,23 @@ function getTradeList(data) {
   return tradeList;
 }
 
+// 获取图表数据，每个交易对和拟合总收益率
 function getChartDate(data) {
   const { results, totalRevenue } = data;
-  let chartList = [];
+  let transactionLists = [];
+  let totalRevenueList = [];
+
   results?.map((item) => {
-    chartList.push({ name: item.symbol, revenueList: item.revenueList });
+    transactionLists.push({ name: item.symbol, revenueList: item.revenueList });
   });
-  chartList.push({ name: 'Total', revenueList: totalRevenue });
-  return chartList;
+  totalRevenueList.push({ name: 'Total', revenueList: totalRevenue });
+  return { transactionLists, totalRevenueList };
 }
 
+// 获取数据的x轴和y轴
 function getXYData(chartList) {
   let xAxisDateList = [];
   let seriesList = [];
-  // TODO 总线和单线的单线数据结构不一样，需要统一（改用两个函数处理）
   chartList[0]?.revenueList?.map((item) => {
     const month = item?.date.substring(4, 6);
     const day = item?.date.substring(6, 8);
@@ -39,7 +42,6 @@ function getXYData(chartList) {
       data: yAxisDateList,
     });
   });
-
   return { xAxisDateList, seriesList };
 }
 

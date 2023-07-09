@@ -10,8 +10,8 @@ export const Navigation = () => {
 
   return (
     <div className={styles.navigation}>
-      <Link className={styles.logo} href="/">
-        <Image src="/master.png" alt="" width={100} height={56} />
+      <Link className={styles.logo} href='/'>
+        <Image src='/master.png' alt='' width={100} height={56} />
       </Link>
       <div className={styles.nav_list}>
         {navs?.map((item) => {
