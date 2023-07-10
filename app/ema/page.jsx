@@ -6,6 +6,7 @@ import { RightCircleOutlined } from '@ant-design/icons';
 import { initGetTradeList, getRenevueList } from '@/pages/api/revenue';
 import TradeList from './TradeList';
 import EmaChart from './EmaChart';
+import Detail from './Detail';
 
 import styles from './index.module.scss';
 
@@ -52,6 +53,7 @@ const Ema = () => {
       setRevenueData(res);
     });
   }, []);
+
   return (
     <Container>
       {/* 策略标题 */}
@@ -109,7 +111,9 @@ const Ema = () => {
 
         {/* 数据详情 */}
         <div className={styles.wrap_right}>
-          <div className={styles.data_box}></div>
+          <div className={styles.data_box}>
+            <Detail />
+          </div>
         </div>
       </section>
     </Container>

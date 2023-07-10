@@ -4,7 +4,7 @@ import ReactECharts from 'echarts-for-react';
 import { getXYData, getChartDate } from '@/utils';
 
 const EmaChart = (props) => {
-  const { revenueData, tradeList } = props;
+  const { revenueData } = props;
 
   let { totalRevenueList = [] } = getChartDate(revenueData);
   const { xAxisDateList, seriesList } = getXYData(totalRevenueList);
@@ -20,9 +20,6 @@ const EmaChart = (props) => {
       bottom: '5%',
       containLabel: true,
     },
-    // legend: {
-    //   data: [...tradeList],
-    // },
     xAxis: {
       type: 'category',
       data: xAxisDateList,
