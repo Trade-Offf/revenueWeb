@@ -6,8 +6,8 @@ import { getXYData, getChartDate } from '@/utils';
 const EmaChart = (props) => {
   const { revenueData, tradeList } = props;
 
-  let { totalRevenueList } = getChartDate(revenueData);
-  const { xAxisDateList, seriesList } = getXYData(totalRevenueList || []);
+  let { totalRevenueList = [] } = getChartDate(revenueData);
+  const { xAxisDateList, seriesList } = getXYData(totalRevenueList);
 
   const option = {
     tooltip: {

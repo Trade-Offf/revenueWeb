@@ -24,15 +24,16 @@ function getChartDate(data) {
 function getXYData(chartList) {
   let xAxisDateList = [];
   let seriesList = [];
+
   chartList[0]?.revenueList?.map((item) => {
     const month = item?.date.substring(4, 6);
     const day = item?.date.substring(6, 8);
     xAxisDateList.push(`${month}-${day}`);
   });
-  chartList && chartList.map((item) => {
+
+  chartList.map((item) => {
     const { revenueList } = item;
     let yAxisDateList = [];
-
     revenueList?.map((item) => {
       yAxisDateList.push((Number(item.revenueRate) * 100).toFixed(3));
     });
