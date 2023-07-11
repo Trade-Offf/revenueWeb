@@ -6,7 +6,7 @@ import { RightCircleOutlined } from '@ant-design/icons';
 import { initGetTradeList, getRenevueList } from '@/pages/api/revenue';
 import TradeList from './TradeList';
 import EmaChart from './EmaChart';
-import Detail from './Detail';
+import DetailTable from './DetailTable';
 
 import styles from './index.module.scss';
 
@@ -22,14 +22,12 @@ const Ema = () => {
   const myTitle = 'EMA策略';
   const myIconText = '趋势行情适用';
 
-  console.log(tradeList);
-
   const params = {
     txPairs,
     ...selectDate,
   };
 
-  const onClickhandleConfigType = (type) => {
+  const onClickhandleConfigType = () => {
     setIsConfigType(!isConfigType);
   };
 
@@ -112,7 +110,8 @@ const Ema = () => {
         {/* 数据详情 */}
         <div className={styles.wrap_right}>
           <div className={styles.data_box}>
-            <Detail />
+            {/* <Detail /> */}
+            <DetailTable />
           </div>
         </div>
       </section>

@@ -1,9 +1,15 @@
 'use client';
-// import { Checkbox, Tag } from 'antd';
+import { useState, useEffect } from 'react';
+import { Table, Spin } from 'antd';
 import styles from './index.module.scss';
 
 export default function Detail(props) {
   const {} = props;
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const mockData = [
     { name: '累积净值', value: 1 },
@@ -26,19 +32,23 @@ export default function Detail(props) {
     { name: '年化收益/资金占用', value: 1 },
   ];
 
+  const columns = [
+    {
+      title: '指标',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '数值',
+      dataIndex: 'value',
+      key: 'value',
+    },
+  ];
+
   return (
     <div className={styles.detail}>
       <div className={styles.detail_title}>风险分析</div>
-      <table>
-        {mockData.map((item) => {
-          return (
-            <tr key={item.name + item.value} className={styles.detail_content}>
-              <td className={`${styles.item} ${styles.name}`}>{item.name}</td>
-              <td className={`${styles.item} ${styles.value}`}>{item.value}</td>
-            </tr>
-          );
-        })}
-      </table>
+      <Table dataSource={mockData} columns={columns} bordered pagination={false} size={'small'} />
     </div>
   );
 }

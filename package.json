@@ -23,5 +23,6 @@
     "react-echarts": "^0.1.1",
     "react-icons": "^4.8.0",
     "sass": "^1.63.4"
-  }
+  },
+  "repository": "git@github.com:Trade-Offf/revenueWeb.git"
 }

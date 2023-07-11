@@ -4,6 +4,7 @@ import styles from './index.module.scss';
 
 export default function TradeList(props) {
   const { tradeList = [], txPairs, setTxPairs } = props;
+  const currentTradeList = txPairs?.split(',')
 
   const onChange = (e) => {
     let tradeString = '';
@@ -30,8 +31,8 @@ export default function TradeList(props) {
       <div className={styles.trade_title}>
         <span>当前选择的回测指标:</span>
         <span className={styles.tags}>
-          {txPairs?.split(',').map((item) => {
-            return <Tag className={styles.tag}>{item}</Tag>;
+          {currentTradeList.map((item) => {
+            return <Tag key={item.key} className={styles.tag}>{item}</Tag>;
           })}
         </span>
       </div>
