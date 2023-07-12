@@ -4,10 +4,10 @@ import { Button } from 'antd';
 import { Container } from '@/components';
 import { RightCircleOutlined } from '@ant-design/icons';
 import { initGetTradeList, getRenevueList } from '@/pages/api/revenue';
+import { clearTradeList } from '@/utils';
 import TradeList from './TradeList';
 import EmaChart from './EmaChart';
 import DetailTable from './DetailTable';
-
 import styles from './index.module.scss';
 
 const Ema = () => {
@@ -41,7 +41,9 @@ const Ema = () => {
   useEffect(() => {
     initGetTradeList()
       .then((res) => {
-        setTradeList(res);
+        let tradeList = clearTradeList(res);
+
+        setTradeList(tradeList);
       })
       .catch((err) => {
         console.log(err);

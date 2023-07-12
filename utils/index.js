@@ -7,7 +7,22 @@ function getTradeList(data) {
   return tradeList;
 }
 
-// 获取图表数据，每个交易对和拟合总收益率
+// 过滤有冒号的重复数据
+// TODO：跟后端沟通，返回数据格式统一，不要有重复
+function clearTradeList(list) {
+  let newTradeList = [];
+
+  list.map((item) => {
+    if (item?.key.indexOf(':') == -1) {
+      newTradeList.push(item?.key);
+    }
+  });
+
+  newTradeList.sort();
+  return newTradeList;
+}
+
+// 获取每个交易对和拟合总收益率数据
 function getChartDate(data) {
   const { results, totalRevenue } = data;
   let transactionLists = [];
@@ -20,7 +35,7 @@ function getChartDate(data) {
   return { transactionLists, totalRevenueList };
 }
 
-// 获取数据的x轴和y轴
+// 获取数据的 x 轴和 y 轴
 function getXYData(chartList) {
   let xAxisDateList = [];
   let seriesList = [];
@@ -46,4 +61,4 @@ function getXYData(chartList) {
   return { xAxisDateList, seriesList };
 }
 
-export { getTradeList, getChartDate, getXYData };
+export { getTradeList, clearTradeList, getChartDate, getXYData };
