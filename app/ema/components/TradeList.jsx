@@ -1,6 +1,6 @@
 'use client';
 import { Checkbox, Tag } from 'antd';
-import styles from './index.module.scss';
+import styles from '../index.module.scss';
 
 export default function TradeList(props) {
   const { tradeList = [], txPairs, setTxPairs } = props;

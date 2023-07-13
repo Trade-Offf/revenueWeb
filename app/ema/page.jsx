@@ -1,76 +1,64 @@
 'use client';
+
 import { useState, useEffect } from 'react';
-import { Button } from 'antd';
+import { Button, DatePicker } from 'antd';
+import dayjs from 'dayjs';
 import { Container } from '@/components';
 import { RightCircleOutlined } from '@ant-design/icons';
-import { initGetTradeList, getRenevueList } from '@/pages/api/revenue';
-import { clearTradeList } from '@/utils';
-import TradeList from './TradeList';
-import EmaChart from './EmaChart';
-import DetailTable from './DetailTable';
+import { EmaChart, TradeList, DetailTable } from './components';
+import {
+  getHandleRevenueList,
+  initHandleGetTradeList,
+  onSelectDateChange,
+} from './hooks';
 import styles from './index.module.scss';
 
+const { RangePicker } = DatePicker;
+const dateFormat = 'YYYY-MM-DD';
+
 const Ema = () => {
-  const [revenueData, setRevenueData] = useState({});
-  const [tradeList, setTradeList] = useState([]);
+  const [revenueData, setRevenueData] = useState({}); // 回测数据
+  const [isShowConfigPage, setIsShowConfigPage] = useState(false); // 是否展示配置模块
+  const [tradeList, setTradeList] = useState([]); // 所有交易对列表
+  const [txPairs, setTxPairs] = useState('BTC-USDT'); // 交易对字符串
   const [selectDate, setSelectDate] = useState({
     startDate: '2023-01-01',
     endDate: '2023-06-01',
   });
-  const [isConfigType, setIsConfigType] = useState(false);
-  const [txPairs, setTxPairs] = useState('BTC-USDT');
-  const myTitle = 'EMA策略';
-  const myIconText = '趋势行情适用';
+
+  // 常量
+  const emaTitle = 'EMA策略';
+  const emaIconText = '趋势行情适用';
 
   const params = {
     txPairs,
     ...selectDate,
   };
 
-  const onClickhandleConfigType = () => {
-    setIsConfigType(!isConfigType);
-  };
-
-  const onBtnClick = () => {
-    console.log('params', params);
-    getRenevueList(params).then((res) => {
-      setRevenueData(res);
-    });
-  };
-
   useEffect(() => {
-    initGetTradeList()
-      .then((res) => {
-        let tradeList = clearTradeList(res);
-
-        setTradeList(tradeList);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    getRenevueList(params).then((res) => {
-      setRevenueData(res);
-    });
+    initHandleGetTradeList(setTradeList);
+    getHandleRevenueList(params, setRevenueData);
   }, []);
 
   return (
     <Container>
       {/* 策略标题 */}
       <section className={styles.title}>
-        <div className={styles.text}>{myTitle}</div>
-        <div className={styles.icon}>{myIconText}</div>
+        <div className={styles.text}>{emaTitle}</div>
+        <div className={styles.icon}>{emaIconText}</div>
       </section>
 
       {/* 容器内容 */}
       <section className={styles.wrap}>
-        {/* 策略介绍与回测配置 */}
         <div className={styles.wrap_left}>
+          {/* 回测图表 */}
           <div className={styles.chart}>
             <EmaChart revenueData={revenueData} tradeList={tradeList} />
           </div>
+
+          {/* 策略介绍与回测配置 */}
           <div className={styles.under}>
-            {isConfigType === false ? (
+            {isShowConfigPage === false ? (
               <div className={styles.description}>
                 <div className={styles.box}>
                   <div className={styles.box_title}>策略思想</div>
@@ -87,10 +75,19 @@ const Ema = () => {
               </div>
             ) : (
               <div className={styles.config}>
+                <RangePicker
+                  defaultValue={[
+                    dayjs('2023-01-01', dateFormat),
+                    dayjs('2023-06-01', dateFormat),
+                  ]}
+                  onChange={(dates, dateStrings) =>
+                    onSelectDateChange(dates, dateStrings, setSelectDate)
+                  }
+                />
                 <Button
                   type='primary'
                   className={styles.btn}
-                  onClick={onBtnClick}
+                  onClick={() => getHandleRevenueList(params, setRevenueData)}
                 >
                   开始回测
                 </Button>
@@ -104,7 +101,7 @@ const Ema = () => {
             <RightCircleOutlined
               className={styles.next_Icon}
               style={{ fontSize: '32px' }}
-              onClick={onClickhandleConfigType}
+              onClick={() => setIsShowConfigPage(!isShowConfigPage)}
             />
           </div>
         </div>
@@ -112,7 +109,6 @@ const Ema = () => {
         {/* 数据详情 */}
         <div className={styles.wrap_right}>
           <div className={styles.data_box}>
-            {/* <Detail /> */}
             <DetailTable />
           </div>
         </div>

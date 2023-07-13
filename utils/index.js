@@ -61,4 +61,24 @@ function getXYData(chartList) {
   return { xAxisDateList, seriesList };
 }
 
-export { getTradeList, clearTradeList, getChartDate, getXYData };
+// 首字母分类配置项
+function groupByFirstLetter(strings) {
+  const data = {};
+  for (let i = 0; i < strings.length; i++) {
+    const str = strings[i];
+    const firstLetter = str.charAt(0).toUpperCase();
+    if (!data[firstLetter]) {
+      data[firstLetter] = [];
+    }
+    data[firstLetter].push(str);
+  }
+  return data;
+}
+
+export {
+  getTradeList,
+  clearTradeList,
+  groupByFirstLetter,
+  getChartDate,
+  getXYData,
+};

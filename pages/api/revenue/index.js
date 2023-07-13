@@ -1,8 +1,8 @@
 import request from '@/service/fetch';
 import qs from 'qs';
-// 初始化交易对列表
 
-async function initGetTradeList() {
+// 初始化交易对列表
+async function initTradeList() {
   const response = await request.post('/quant/listTxPairs', {
     kLineType: '1h',
   });
@@ -11,7 +11,7 @@ async function initGetTradeList() {
   }
 }
 
-async function getRenevueList(params) {
+async function getRevenueData(params) {
   const { txPairs, startDate, endDate } = params;
   const response = await request.post(
     '/quant/ema',
@@ -30,4 +30,4 @@ async function getRenevueList(params) {
   }
 }
 
-export { initGetTradeList, getRenevueList };
+export { initTradeList, getRevenueData };

@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Table, Spin } from 'antd';
-import styles from './index.module.scss';
+import styles from '../index.module.scss';
 
 export default function Detail(props) {
   const {} = props;
