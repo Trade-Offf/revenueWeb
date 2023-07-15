@@ -7,4 +7,8 @@ export const navs = [
     label: 'EMA回测',
     path: '/ema',
   },
+  {
+    label: '中性策略',
+    path: '/equity',
+  },
 ];

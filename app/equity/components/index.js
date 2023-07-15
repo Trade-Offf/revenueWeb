@@ -1,6 +1,6 @@
 import CurrentTrade from './CurrentTrade';
 import DetailTable from './DetailTable';
 import TradeList from './TradeList';
-import EmaChart from './EmaChart';
+import EquityChart from './EquityChart';
 
-export { DetailTable, TradeList, EmaChart, CurrentTrade };
+export { DetailTable, TradeList, EquityChart, CurrentTrade };

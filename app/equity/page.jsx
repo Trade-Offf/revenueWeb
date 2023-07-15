@@ -3,7 +3,12 @@
 import { useState, useEffect } from 'react';
 import { Container } from '@/components';
 import { RightCircleOutlined } from '@ant-design/icons';
-import { EmaChart, TradeList, DetailTable, CurrentTrade } from './components';
+import {
+  EquityChart,
+  TradeList,
+  DetailTable,
+  CurrentTrade,
+} from './components';
 import {
   handleGetRevenueData,
   handleInitTradeList,
@@ -11,15 +16,15 @@ import {
 } from './hooks';
 import styles from './index.module.scss';
 
-const Ema = () => {
+const Equity = () => {
   const [revenueData, setRevenueData] = useState({}); // 回测数据
   const [isShowConfigPage, setIsShowConfigPage] = useState(false); // 是否展示配置模块
   const [tradeList, setTradeList] = useState([]); // 所有交易对列表
   const [currentTradeString, setCurrentTradeString] = useState('BTC-USDT'); // 交易对字符串
 
   // 页面常量
-  const emaTitle = 'EMA策略';
-  const emaIconText = '趋势行情适用';
+  const emaTitle = '中性策略';
+  const emaIconText = '震荡行情适用';
 
   useEffect(() => {
     handleInitTradeList(setTradeList);
@@ -48,7 +53,7 @@ const Ema = () => {
         <div className={styles.wrap_left}>
           {/* 回测图表 */}
           <div className={styles.chart}>
-            <EmaChart revenueData={revenueData} tradeList={tradeList} />
+            <EquityChart revenueData={revenueData} tradeList={tradeList} />
           </div>
 
           {/* 策略介绍与回测配置 */}
@@ -97,4 +102,4 @@ const Ema = () => {
   );
 };
 
-export default Ema;
+export default Equity;
