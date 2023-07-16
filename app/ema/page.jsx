@@ -4,11 +4,7 @@ import { useState, useEffect } from 'react';
 import { Container } from '@/components';
 import { RightCircleOutlined } from '@ant-design/icons';
 import { EmaChart, TradeList, DetailTable, CurrentTrade } from './components';
-import {
-  handleGetRevenueData,
-  handleInitTradeList,
-  onSelectDateChange,
-} from './hooks';
+import { handleGetRevenueData, handleInitTradeList } from './hooks';
 import styles from './index.module.scss';
 
 const Ema = () => {
@@ -89,7 +85,7 @@ const Ema = () => {
         {/* 数据详情 */}
         <div className={styles.wrap_right}>
           <div className={styles.data_box}>
-            <DetailTable />
+            <DetailTable revenueData={revenueData} />
           </div>
         </div>
       </section>

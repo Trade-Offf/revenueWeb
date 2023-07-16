@@ -94,7 +94,7 @@ const Equity = () => {
         {/* 数据详情 */}
         <div className={styles.wrap_right}>
           <div className={styles.data_box}>
-            <DetailTable />
+            <DetailTable revenueData={revenueData} />
           </div>
         </div>
       </section>

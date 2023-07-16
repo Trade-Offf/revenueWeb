@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Checkbox, Button, DatePicker, Select } from 'antd';
+import { Checkbox, Button, DatePicker, Select, Divider } from 'antd';
 import { handleGetRevenueData, onSelectDateChange } from '../hooks';
 import dayjs from 'dayjs';
 import styles from '../index.module.scss';
@@ -51,8 +51,8 @@ export default function TradeList(props) {
 
   const kLineTypeOption = [
     { value: '1h', label: '1h' },
+    { value: '2h', label: '2h' },
     { value: '4h', label: '4h' },
-    { value: '1d', label: '1d' },
   ];
 
   return tradeList.length > 0 ? (
@@ -67,12 +67,13 @@ export default function TradeList(props) {
             onSelectDateChange(dates, dateStrings, setSelectDate)
           }
         />
+        <Divider type='vertical' />
         <Select
           defaultValue='1h'
           style={{ width: 120, marginLeft: 16 }}
           onChange={(e) => setKLineTypeOption(e)}
           options={kLineTypeOption}
-          fieldNames={{label: "k线类型"}}
+          fieldNames={{ label: 'k线类型' }}
         />
         <Button
           type='primary'
@@ -82,7 +83,7 @@ export default function TradeList(props) {
           开始回测
         </Button>
       </div>
-
+      <Divider />
       <Checkbox.Group
         className={styles.tradeList_wrap}
         defaultValue={[currentTradeString]}
