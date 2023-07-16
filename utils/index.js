@@ -41,9 +41,10 @@ function getXYData(chartList) {
   let seriesList = [];
 
   chartList[0]?.revenueList?.map((item) => {
+    const year = item?.date.substring(0, 4);
     const month = item?.date.substring(4, 6);
     const day = item?.date.substring(6, 8);
-    xAxisDateList.push(`${month}-${day}`);
+    xAxisDateList.push(`${year}-${month}-${day}`);
   });
 
   chartList.map((item) => {

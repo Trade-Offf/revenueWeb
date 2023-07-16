@@ -12,7 +12,14 @@ async function initTradeList() {
 }
 
 async function getRevenueData(params) {
-  const { currentTradeString, startDate, endDate, kLineType } = params;
+  const {
+    currentTradeString,
+    startDate,
+    endDate,
+    kLineType,
+    shortEma,
+    longEma,
+  } = params;
   const response = await request.post(
     '/quant/ema',
     qs.stringify({
@@ -20,8 +27,8 @@ async function getRevenueData(params) {
       kLineType: kLineType,
       startDate: startDate,
       endDate: endDate,
-      shortEma: 5,
-      longEma: 20,
+      shortEma: shortEma,
+      longEma: longEma,
       filterRevenueRate: 0,
     })
   );

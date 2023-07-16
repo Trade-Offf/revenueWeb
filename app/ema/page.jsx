@@ -3,27 +3,49 @@
 import { useState, useEffect } from 'react';
 import { Container } from '@/components';
 import { RightCircleOutlined } from '@ant-design/icons';
+import dayjs from 'dayjs';
 import { EmaChart, TradeList, DetailTable, CurrentTrade } from './components';
 import { handleGetRevenueData, handleInitTradeList } from './hooks';
 import styles from './index.module.scss';
+
+const dateFormat = 'YYYY-MM-DD';
+const nowDate = dayjs(); // 获取当前时间
+const twoYearsAgoDate = dayjs()?.subtract(2, 'year'); // 获取两年前的时间
 
 const Ema = () => {
   const [revenueData, setRevenueData] = useState({}); // 回测数据
   const [isShowConfigPage, setIsShowConfigPage] = useState(false); // 是否展示配置模块
   const [tradeList, setTradeList] = useState([]); // 所有交易对列表
   const [currentTradeString, setCurrentTradeString] = useState('BTC-USDT'); // 交易对字符串
+  // 回测时间范围
+  const [selectDate, setSelectDate] = useState({
+    startDate: twoYearsAgoDate,
+    endDate: nowDate,
+  });
+
   // 页面常量
   const emaTitle = 'EMA策略';
   const emaIconText = '趋势行情适用';
+
+  const tradeParams = {
+    tradeList,
+    currentTradeString,
+    setCurrentTradeString,
+    setRevenueData,
+    selectDate,
+    setSelectDate,
+  };
 
   useEffect(() => {
     handleInitTradeList(setTradeList);
     handleGetRevenueData(
       {
+        shortEma: 5,
+        longEma: 20,
         kLineType: '1h',
         currentTradeString: 'BTC-USDT',
-        startDate: '2023-01-01',
-        endDate: '2023-06-01',
+        startDate: twoYearsAgoDate.format(dateFormat),
+        endDate: nowDate.format(dateFormat),
       },
       setRevenueData
     );
@@ -65,12 +87,7 @@ const Ema = () => {
               </div>
             ) : (
               <div className={styles.config}>
-                <TradeList
-                  tradeList={tradeList}
-                  currentTradeString={currentTradeString}
-                  setCurrentTradeString={setCurrentTradeString}
-                  setRevenueData={setRevenueData}
-                />
+                <TradeList {...tradeParams} />
               </div>
             )}
             <RightCircleOutlined
