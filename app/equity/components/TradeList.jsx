@@ -1,23 +1,25 @@
 'use client';
 
 import { useState } from 'react';
-import { Checkbox, Button, DatePicker, Select, Divider } from 'antd';
+import { Checkbox, Button, DatePicker, Select, Divider, Space } from 'antd';
 import { handleGetRevenueData, onSelectDateChange } from '../hooks';
 import dayjs from 'dayjs';
 import styles from '../index.module.scss';
 
 const { RangePicker } = DatePicker;
+const { Option } = Select;
 const dateFormat = 'YYYY-MM-DD';
 
 export default function TradeList(props) {
   const {
     tradeList = [],
     setRevenueData,
-    currentTradeString,
-    setCurrentTradeString,
+    longSymbol,
+    shortSymbol,
+    setLongSymbol,
+    setShortSymbol,
   } = props;
   const [kLineType, setKLineTypeOption] = useState('1h');
-  // const [isSelectTrade, setIsSelectTrade] = useState(false);
 
   // 回测配置项
   const [selectDate, setSelectDate] = useState({
@@ -26,23 +28,18 @@ export default function TradeList(props) {
   });
   const params = {
     kLineType,
+    longSymbol,
+    shortSymbol,
     ...selectDate,
   };
 
-  const onChange = (e) => {
-    console.log('33', e);
-    if (e.length > 2) {
-      console.log('别选了');
-    } else {
-      let tradeString = '';
-      e.map((item) => {
-        if (e.indexOf(item) === e.length - 1) {
-          tradeString += item;
-          return;
-        }
-        tradeString += item + ',';
-      });
-      setCurrentTradeString(tradeString);
+  const onChange = (e, type) => {
+    console.log('37,', e, type);
+    if (type == 'long') {
+      setLongSymbol(e);
+    }
+    if (type == 'short') {
+      setShortSymbol(e);
     }
   };
 
@@ -53,6 +50,7 @@ export default function TradeList(props) {
       value: item,
     });
   });
+  console.log('57', option);
 
   const kLineTypeOption = [
     { value: '1h', label: '1h' },
@@ -63,23 +61,28 @@ export default function TradeList(props) {
   return tradeList.length > 0 ? (
     <div className={styles.trade}>
       <div className={styles.trade_config}>
-        <RangePicker
-          defaultValue={[
-            dayjs('2023-01-01', dateFormat),
-            dayjs('2023-06-01', dateFormat),
-          ]}
-          onChange={(dates, dateStrings) =>
-            onSelectDateChange(dates, dateStrings, setSelectDate)
-          }
-        />
-        <Divider type='vertical' />
-        <Select
-          defaultValue='1h'
-          style={{ width: 120, marginLeft: 16 }}
-          onChange={(e) => setKLineTypeOption(e)}
-          options={kLineTypeOption}
-          fieldNames={{ label: 'k线类型' }}
-        />
+        <div className={styles.trade_config_item}>
+          <span>回测时间：</span>
+          <RangePicker
+            defaultValue={[
+              dayjs('2023-01-01', dateFormat),
+              dayjs('2023-06-01', dateFormat),
+            ]}
+            onChange={(dates, dateStrings) =>
+              onSelectDateChange(dates, dateStrings, setSelectDate)
+            }
+          />
+        </div>
+
+        <div className={styles.trade_config_item}>
+          <span>K线类型：</span>
+          <Select
+            defaultValue='1h'
+            style={{ width: 112, marginLeft: 6 }}
+            onChange={(e) => setKLineTypeOption(e)}
+            options={kLineTypeOption}
+          />
+        </div>
         <Button
           type='primary'
           className={styles.btn}
@@ -88,14 +91,52 @@ export default function TradeList(props) {
           开始回测
         </Button>
       </div>
-      <Divider />
-      <Checkbox.Group
-        className={styles.tradeList_wrap}
-        options={option}
-        onChange={onChange}
-        defaultValue={[...currentTradeString.split(',')]}
-        // disabled={!isSelectTrade}
-      />
+      <div className={styles.trade_select}>
+        <div className={styles.trade_select_item}>
+          <span>做多币种：</span>
+          <Select
+            showSearch={true}
+            style={{ width: 140 }}
+            defaultValue={[longSymbol]}
+            onChange={(e) => onChange(e, 'long')}
+            optionLabelProp='label'
+          >
+            {option.map((item) => {
+              return (
+                <Option
+                  key={`${item.value}`}
+                  value={item.value}
+                  label={item.label}
+                >
+                  {item.label}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <div className={styles.trade_select_item}>
+          <span>做空币种：</span>
+          <Select
+            showSearch={true}
+            style={{ width: 140 }}
+            defaultValue={[shortSymbol]}
+            onChange={(e) => onChange(e, 'short')}
+            optionLabelProp='label'
+          >
+            {option.map((item) => {
+              return (
+                <Option
+                  key={`${item.value}`}
+                  value={item.value}
+                  label={item.label}
+                >
+                  {item.label}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+      </div>
     </div>
   ) : null;
 }

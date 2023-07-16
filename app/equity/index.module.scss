@@ -16,7 +16,7 @@
     margin-left: 18px;
     color: #ffffff;
     font-weight: bold;
-    background-color: #FBAD13;
+    background-color: #fbad13;
   }
   .current {
     max-width: 70%;
@@ -114,38 +114,30 @@
  * 样式文件：TradeList  
  */
 .trade {
+  margin-left: 16px;
+  width: 80%;
+
   &_config {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 16px;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    &_item{
+      width: 100%;
+    }
     .btn {
       position: absolute;
       right: 30px;
     }
   }
-  .tradeList_wrap {
-    max-height: 300px;
-    overflow-y: scroll;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 12px;
-    margin: 0px 16px;
-    .tradeList_item {
+  &_select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    &_item {
       width: 100%;
-      height: 100%;
-      padding: 16px;
-      border-radius: 12px;
-      box-shadow: grey 0px 0px 6px 0px;
-      background-color: #ffffff;
-      .item_title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 12px;
-      }
-      .item_content {
-        font-size: 18px;
-      }
     }
   }
 }
@@ -165,24 +157,4 @@
     font-weight: bold;
     margin-bottom: 12px;
   }
-
-  // &_content {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, 1fr);
-  //   border-collapse: collapse;
-  //   font-size: 16px;
-  //   .item {
-  //     width: 100%;
-  //     position: relative;
-  //     border: 1px solid #ddd;
-  //     border-collapse: collapse;
-  //   }
-
-  //   .name {
-  //     justify-self: start;
-  //   }
-  //   .value {
-  //     justify-self: end;
-  //   }
-  // }
 }

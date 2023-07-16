@@ -6,39 +6,34 @@ export default function Home() {
     <Container>
       <section className={styles.main}>
         <h1 className={styles.title}>
-          <div className={styles.gradient}>超简洁</div>
-          <div>QuantMaster 图表</div>
+          <div className={styles.gradient}>QuantMaster</div>
+          <div>Web3量化交易服务平台</div>
         </h1>
         <p className={styles.subtitle}>
-          时效性好，支持多种图表类型，适用于量化策略回测的可视化工具
+          让Web3投资者无门槛使用量化交易获得成功
         </p>
         <div className={styles.btn_group}>
           <button className={`${styles.btn} ${styles.start_btn}`}>
             开始使用
           </button>
-          <button className={styles.btn}>更多</button>
+          <button className={styles.btn}>联系我们</button>
         </div>
 
         <section className={styles.card_list}>
           <div className={styles.card}>
-            <h2 className={styles.card_title}>易学易用</h2>
+            <h2 className={styles.card_title}>超级交易策略</h2>
             <p className={styles.card_content}>
-              基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API
-              和一流的文档。
+              专业Web3量化交易者提供高营收低风险策略供选择
             </p>
           </div>
           <div className={styles.card}>
-            <h2 className={styles.card_title}>易学易用</h2>
-            <p className={styles.card_content}>
-              基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API
-              和一流的文档。
-            </p>
+            <h2 className={styles.card_title}>专业交易回测</h2>
+            <p className={styles.card_content}>可微调策略查看收益和风险</p>
           </div>
           <div className={styles.card}>
-            <h2 className={styles.card_title}>易学易用</h2>
+            <h2 className={styles.card_title}>自动交易工具</h2>
             <p className={styles.card_content}>
-              基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API
-              和一流的文档。
+              接入交易所自动运行策略，无需手动操作
             </p>
           </div>
         </section>

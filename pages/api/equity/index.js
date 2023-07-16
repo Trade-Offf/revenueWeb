@@ -13,20 +13,18 @@ async function initTradeList() {
 }
 
 async function getRevenueData(params) {
-  const { currentTradeString='', startDate, endDate } = params;
-  let list = currentTradeString.split(',');
+  const { startDate, endDate, longSymbol, shortSymbol,kLineType } = params;
 
-  console.log('19',list);
   const response = await request.post(
     '/quant/delatHedging',
     qs.stringify({
-      kLineType: '1h',
+      kLineType: kLineType,
       startDate: startDate,
       endDate: endDate,
       takeProfit: 0.05,
       stopLoss: 0.05,
-      longSymbol: list[0],
-      shortSymbol: list[1],
+      longSymbol: longSymbol,
+      shortSymbol: shortSymbol,
     })
   );
   if (response.code === 200) {

@@ -3,16 +3,14 @@ import { Tag } from 'antd';
 import styles from '../index.module.scss';
 
 export default function TradeList(props) {
-  const { currentTradeString } = props;
-  const currentTradeList = currentTradeString?.split(',');
-  console.log('8', currentTradeList);
+  const { longSymbol, shortSymbol } = props;
 
   return (
     <div className={styles.current}>
       <span>做空指标:</span>
-      <Tag className={styles.tag}>{currentTradeList[1]}</Tag>
+      <Tag className={styles.tag}>{shortSymbol}</Tag>
       <span>做多指标:</span>
-      <Tag className={styles.tag}>{currentTradeList[0]}</Tag>
+      <Tag className={styles.tag}>{longSymbol}</Tag>
     </div>
   );
 }

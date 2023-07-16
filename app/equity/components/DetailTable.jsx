@@ -53,7 +53,7 @@ export default function Detail(props) {
         columns={columns}
         bordered
         pagination={false}
-        size={'small'}
+        size={'middle'}
       />
     </div>
   );

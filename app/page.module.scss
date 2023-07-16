@@ -1,84 +1,83 @@
-.main{
+.main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 8rem;
-  .title{
+  .title {
     @extend .flex-x-center;
-    font-size: 76px;
+    font-size: 64px;
     line-height: 1.25;
     letter-spacing: -1.5px;
     font-weight: 900;
     color: #213547;
-    margin-bottom: 30px;
-    .gradient{
+    // margin-bottom: 30px;
+    .gradient {
       @extend .flex-x-center;
-      background: linear-gradient(135deg,#42d392 25%,#647eff);
+      font-size: 76px;
+      background: linear-gradient(135deg, #42d392 25%, #647eff);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
   }
-  .subtitle{
+  .subtitle {
     @extend .flex-x-center;
     font-size: 24px;
+    margin: 40px 0px;
     line-height: 1.25;
     letter-spacing: -0.5px;
-    color: rgba(60, 60, 60, .7);
+    color: rgba(60, 60, 60, 0.7);
   }
-  .btn_group{
+  .btn_group {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 40px;
-    .btn{
-      height: 40px;
+    .btn {
+      height: 48px;
       margin: 0 15px;
-      padding: 8px 1em;
+      padding: 12px 1em;
       border-radius: 8px;
-      border :none;
-      font-size: 16px;
+      border: none;
+      font-size: 18px;
       font-weight: 600;
       color: #476582;
       background-color: #f1f1f1;
       cursor: pointer;
-      &:hover{
+      &:hover {
         background-color: #cbcbcb;
       }
     }
-    .start_btn{
+    .start_btn {
       color: #ffffff;
       background-color: #42b883;
-      &:hover{
+      &:hover {
         background-color: #319e6d;
       }
     }
   }
 
-  .card_list{
+  .card_list {
     display: flex;
     flex-direction: row;
     max-width: 960px;
-    width: 100vw;
     padding: 42px 32px;
     color: #213547;
-    .card{
+    .card {
+      width: 330px;
       padding: 28px 36px;
       font-weight: 500;
-      &_title{
-        margin-bottom: 15px;
+      &_title {
+        margin-bottom: 16px;
       }
-      &_content{
-        font-size: 15px;
+      &_content {
+        font-size: 16px;
         font-weight: 400;
-        color: rgba(60, 60, 60, .7);
+        color: rgba(60, 60, 60, 0.7);
       }
     }
   }
 }
-
-
 
 .flex-x-center {
   display: flex;

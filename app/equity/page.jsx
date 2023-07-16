@@ -16,7 +16,8 @@ const Equity = () => {
   const [revenueData, setRevenueData] = useState({}); // 回测数据
   const [isShowConfigPage, setIsShowConfigPage] = useState(false); // 是否展示配置模块
   const [tradeList, setTradeList] = useState([]); // 所有交易对列表
-  const [currentTradeString, setCurrentTradeString] = useState('FLOW-USDT,BTC-USDT'); // 交易对字符串
+  const [longSymbol, setLongSymbol] = useState('BTC-USDT'); // 做多币种
+  const [shortSymbol, setShortSymbol] = useState('FLOW-USDT'); // 做空币种
 
   // 页面常量
   const emaTitle = '中性策略';
@@ -26,10 +27,9 @@ const Equity = () => {
     handleInitTradeList(setTradeList);
     handleGetRevenueData(
       {
-        // kLineType: '1h',
-        currentTradeString: currentTradeString,
-        // longSymbol: 'ETH-USDT',
-        // shortSymbol: 'FLOW-USDT',
+        kLineType: '1h',
+        longSymbol: longSymbol,
+        shortSymbol: shortSymbol,
         startDate: '2023-01-01',
         endDate: '2023-06-01',
       },
@@ -43,7 +43,7 @@ const Equity = () => {
       <section className={styles.title}>
         <div className={styles.text}>{emaTitle}</div>
         <div className={styles.icon}>{emaIconText}</div>
-        <CurrentTrade currentTradeString={currentTradeString} />
+        <CurrentTrade longSymbol={longSymbol} shortSymbol={shortSymbol} />
       </section>
 
       {/* 容器内容 */}
@@ -75,9 +75,11 @@ const Equity = () => {
               <div className={styles.config}>
                 <TradeList
                   tradeList={tradeList}
-                  currentTradeString={currentTradeString}
-                  setCurrentTradeString={setCurrentTradeString}
                   setRevenueData={setRevenueData}
+                  longSymbol={longSymbol}
+                  shortSymbol={shortSymbol}
+                  setLongSymbol={setLongSymbol}
+                  setShortSymbol={setShortSymbol}
                 />
               </div>
             )}

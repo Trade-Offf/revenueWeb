@@ -11,33 +11,33 @@
   border: 1px solid #e8e8e8;
 }
 
-.logo{
+.logo {
   @extend .flex-y-center;
   position: relative;
-  // margin-left: 10vw;
-  margin-right: 50vw;
 }
 
-.nav_list{
+.nav_list {
   @extend .flex-y-center;
   position: relative;
   height: 64px;
   font-size: 16px;
   font-weight: 500;
+  min-width: 80%;
+  justify-content: end;
 
-  &_item{
+  &_item {
     @extend .flex-y-center;
     height: 64px;
-    margin:0 20px;
+    margin: 0 20px;
     color: #213547;
   }
-  &_item:hover{
+  &_item:hover {
     color: #1890ff;
   }
-  &_item_active{
+  &_item_active {
     @extend .flex-y-center;
     height: 64px;
-    margin:0 20px;
+    margin: 0 20px;
     color: #1890ff;
     border-bottom: 2px solid #1890ff;
   }
