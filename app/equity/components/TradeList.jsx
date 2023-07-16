@@ -12,11 +12,12 @@ const dateFormat = 'YYYY-MM-DD';
 export default function TradeList(props) {
   const {
     tradeList = [],
-    currentTradeString,
     setRevenueData,
+    currentTradeString,
     setCurrentTradeString,
   } = props;
   const [kLineType, setKLineTypeOption] = useState('1h');
+  // const [isSelectTrade, setIsSelectTrade] = useState(false);
 
   // 回测配置项
   const [selectDate, setSelectDate] = useState({
@@ -25,20 +26,24 @@ export default function TradeList(props) {
   });
   const params = {
     kLineType,
-    currentTradeString,
     ...selectDate,
   };
 
   const onChange = (e) => {
-    let tradeString = '';
-    e.map((item) => {
-      if (e.indexOf(item) === e.length - 1) {
-        tradeString += item;
-        return;
-      }
-      tradeString += item + ',';
-    });
-    setCurrentTradeString(tradeString);
+    console.log('33', e);
+    if (e.length > 2) {
+      console.log('别选了');
+    } else {
+      let tradeString = '';
+      e.map((item) => {
+        if (e.indexOf(item) === e.length - 1) {
+          tradeString += item;
+          return;
+        }
+        tradeString += item + ',';
+      });
+      setCurrentTradeString(tradeString);
+    }
   };
 
   let option = [];
@@ -86,9 +91,10 @@ export default function TradeList(props) {
       <Divider />
       <Checkbox.Group
         className={styles.tradeList_wrap}
-        defaultValue={[currentTradeString]}
         options={option}
         onChange={onChange}
+        defaultValue={[...currentTradeString.split(',')]}
+        // disabled={!isSelectTrade}
       />
     </div>
   ) : null;

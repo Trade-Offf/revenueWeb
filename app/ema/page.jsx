@@ -12,7 +12,6 @@ const Ema = () => {
   const [isShowConfigPage, setIsShowConfigPage] = useState(false); // 是否展示配置模块
   const [tradeList, setTradeList] = useState([]); // 所有交易对列表
   const [currentTradeString, setCurrentTradeString] = useState('BTC-USDT'); // 交易对字符串
-
   // 页面常量
   const emaTitle = 'EMA策略';
   const emaIconText = '趋势行情适用';

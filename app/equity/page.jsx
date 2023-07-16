@@ -9,18 +9,14 @@ import {
   DetailTable,
   CurrentTrade,
 } from './components';
-import {
-  handleGetRevenueData,
-  handleInitTradeList,
-  onSelectDateChange,
-} from './hooks';
+import { handleGetRevenueData, handleInitTradeList } from './hooks';
 import styles from './index.module.scss';
 
 const Equity = () => {
   const [revenueData, setRevenueData] = useState({}); // 回测数据
   const [isShowConfigPage, setIsShowConfigPage] = useState(false); // 是否展示配置模块
   const [tradeList, setTradeList] = useState([]); // 所有交易对列表
-  const [currentTradeString, setCurrentTradeString] = useState('BTC-USDT'); // 交易对字符串
+  const [currentTradeString, setCurrentTradeString] = useState('FLOW-USDT,BTC-USDT'); // 交易对字符串
 
   // 页面常量
   const emaTitle = '中性策略';
@@ -30,8 +26,10 @@ const Equity = () => {
     handleInitTradeList(setTradeList);
     handleGetRevenueData(
       {
-        kLineType: '1h',
-        currentTradeString: 'BTC-USDT',
+        // kLineType: '1h',
+        currentTradeString: currentTradeString,
+        // longSymbol: 'ETH-USDT',
+        // shortSymbol: 'FLOW-USDT',
         startDate: '2023-01-01',
         endDate: '2023-06-01',
       },

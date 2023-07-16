@@ -1,5 +1,5 @@
 import { clearTradeList } from '@/utils';
-import { initTradeList, getRevenueData } from '@/pages/api/ema';
+import { initTradeList, getRevenueData } from '@/pages/api/equity';
 
 /**
  * 根据入参更新回测数据
