@@ -41,7 +41,7 @@ const Equity = () => {
     <Container>
       {/* 策略标题 */}
       <section className={styles.title}>
-        <div className={styles.text}>{emaTitle}</div>
+        <h1 className={styles.text}>{emaTitle}</h1>
         <div className={styles.icon}>{emaIconText}</div>
         <CurrentTrade longSymbol={longSymbol} shortSymbol={shortSymbol} />
       </section>

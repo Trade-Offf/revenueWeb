@@ -1,8 +1,5 @@
-import { Inter } from 'next/font/google';
 import { Navigation } from '@/components';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'QuantMaster',
@@ -11,8 +8,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="zh_CN">
-      <body className={inter.className}>
+    <html lang='zh_CN'>
+      <body>
         <Navigation />
         {children}
       </body>

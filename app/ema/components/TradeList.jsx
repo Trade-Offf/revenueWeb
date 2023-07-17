@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Checkbox, Button, DatePicker, Select, Divider } from 'antd';
-import dayjs from 'dayjs';
 import { handleGetRevenueData, onSelectDateChange } from '../hooks';
 import styles from '../index.module.scss';
 

@@ -1,7 +1,15 @@
+'use client';
+
+import { Popover } from 'antd';
+import Image from 'next/image';
 import styles from './page.module.scss';
 import { Container } from '../components';
 
 export default function Home() {
+  const connectContent = (
+    <Image src='/weChat.JPG' alt='' width={200} height={300} />
+  );
+
   return (
     <Container>
       <section className={styles.main}>
@@ -16,7 +24,9 @@ export default function Home() {
           <button className={`${styles.btn} ${styles.start_btn}`}>
             开始使用
           </button>
-          <button className={styles.btn}>联系我们</button>
+          <Popover placement='bottom' content={connectContent} trigger='click'>
+            <button className={styles.btn}>联系我们</button>
+          </Popover>
         </div>
 
         <section className={styles.card_list}>
