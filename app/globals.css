@@ -1,5 +1,3 @@
-@import 'lxgw-wenkai-screen-webfont/style.css';
-@import 'lxgw-wenkai-webfont/style.css';
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -83,7 +81,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-size: 16px;
-  font-family: 'LXGW WenKai', sans-serif;
+  font-family: 'LXGW', sans-serif;
 }
 
 body {
@@ -92,7 +90,7 @@ body {
 
 h1,
 h2 {
-  font-family: 'LXGW WenKai Screen', sans-serif;
+  font-family: 'LXGW', sans-serif;
 }
 
 a {
@@ -104,4 +102,9 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+@font-face {
+  font-family: 'LXGW';
+  src: url('../public/LXGWWenKaiGBScreen.ttf');
 }
