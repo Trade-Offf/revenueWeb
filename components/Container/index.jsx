@@ -1,8 +1,15 @@
 'use client';
+
 import React from 'react';
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/locale/zh_CN';
+import zh_CN from 'antd/locale/zh_CN';
 import styles from './index.module.scss';
+import 'dayjs/locale/zh-cn';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+
+moment.locale('zh-cn');
+
 export const Container = ({
   as: Element = 'div',
   children,
@@ -10,10 +17,8 @@ export const Container = ({
   ...rest
 }) => {
   return (
-    <ConfigProvider locale={zhCN}>
-      <Element {...rest} className={styles.container}>
-        {children}
-      </Element>
-    </ConfigProvider>
+    <Element {...rest} className={styles.container}>
+      <ConfigProvider locale={zh_CN}>{children}</ConfigProvider>
+    </Element>
   );
 };
