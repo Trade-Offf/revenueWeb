@@ -82,7 +82,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-size: 16px;
-  font-family: 'LXGW WenKai GB Screen', sans-serif;
+  font-family: 'Roboto', 'Open Sans', sans-serif;
 }
 
 body {
@@ -91,7 +91,8 @@ body {
 
 h1,
 h2 {
-  font-family: 'LXGW WenKai GB Screen', sans-serif;
+  /* font-family: 'LXGW WenKai GB Screen', sans-serif; */
+  font-family: 'Roboto', 'Open Sans', sans-serif;
 }
 
 a {

@@ -7,7 +7,7 @@ import { Container } from '../components';
 
 export default function Home() {
   const connectContent = (
-    <Image src='/weChat.JPG' alt='' width={200} height={300} />
+    <Image src='/weChat.JPG' alt='' width={250} height={300} />
   );
 
   return (

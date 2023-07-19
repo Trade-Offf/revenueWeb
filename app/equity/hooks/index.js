@@ -32,11 +32,11 @@ function handleInitTradeList(setTradeList) {
  * @param {Function} dates  日期
  * @param {Function} dateStrings 日期字符串
  */
-function onSelectDateChange(dates, dateStrings, setSelectDate) {
+function onSelectDateChange(dates, setSelectDate) {
   if (dates) {
     setSelectDate({
-      startDate: dateStrings[0],
-      endDate: dateStrings[1],
+      startDate: dates[0],
+      endDate: dates[1],
     });
   } else {
     setSelectDate({
@@ -46,8 +46,4 @@ function onSelectDateChange(dates, dateStrings, setSelectDate) {
   }
 }
 
-export {
-  handleGetRevenueData,
-  handleInitTradeList,
-  onSelectDateChange,
-};
+export { handleGetRevenueData, handleInitTradeList, onSelectDateChange };

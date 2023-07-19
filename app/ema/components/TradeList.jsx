@@ -21,7 +21,6 @@ export default function TradeList(props) {
   const [shortEma, setShortEma] = useState(5);
   const [longEma, setLongEma] = useState(20);
   const { startDate, endDate } = selectDate;
-  console.log('24', startDate);
 
   const params = {
     shortEma,

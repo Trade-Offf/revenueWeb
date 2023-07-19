@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Container } from '@/components';
+import dayjs from 'dayjs';
 import { RightCircleOutlined } from '@ant-design/icons';
 import {
   EquityChart,
@@ -11,6 +12,10 @@ import {
 } from './components';
 import { handleGetRevenueData, handleInitTradeList } from './hooks';
 import styles from './index.module.scss';
+
+const dateFormat = 'YYYY-MM-DD';
+const nowDate = dayjs(); // 获取当前时间
+const twoYearsAgoDate = dayjs()?.subtract(2, 'year'); // 获取两年前的时间
 
 const Equity = () => {
   const [revenueData, setRevenueData] = useState({}); // 回测数据
@@ -23,6 +28,23 @@ const Equity = () => {
   const emaTitle = '中性策略';
   const emaIconText = '震荡行情适用';
 
+  // 回测时间范围
+  const [selectDate, setSelectDate] = useState({
+    startDate: twoYearsAgoDate,
+    endDate: nowDate,
+  });
+
+  const tradeParams = {
+    tradeList,
+    setRevenueData,
+    longSymbol,
+    shortSymbol,
+    setLongSymbol,
+    setShortSymbol,
+    selectDate,
+    setSelectDate,
+  };
+
   useEffect(() => {
     handleInitTradeList(setTradeList);
     handleGetRevenueData(
@@ -30,12 +52,13 @@ const Equity = () => {
         kLineType: '1h',
         longSymbol: longSymbol,
         shortSymbol: shortSymbol,
-        startDate: '2023-01-01',
-        endDate: '2023-06-01',
+        startDate: twoYearsAgoDate.format(dateFormat),
+        endDate: nowDate.format(dateFormat),
       },
       setRevenueData
     );
   }, []);
+  console.log('revenueData', revenueData);
 
   return (
     <Container>
@@ -73,14 +96,7 @@ const Equity = () => {
               </div>
             ) : (
               <div className={styles.config}>
-                <TradeList
-                  tradeList={tradeList}
-                  setRevenueData={setRevenueData}
-                  longSymbol={longSymbol}
-                  shortSymbol={shortSymbol}
-                  setLongSymbol={setLongSymbol}
-                  setShortSymbol={setShortSymbol}
-                />
+                <TradeList {...tradeParams} />
               </div>
             )}
             <RightCircleOutlined

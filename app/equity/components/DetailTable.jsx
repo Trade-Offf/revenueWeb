@@ -23,13 +23,13 @@ export default function Detail(props) {
   }, []);
 
   const detaliData = [
-    { name: '策略年化收益率', value: annualizedReturn },
-    { name: '最大回撒', value: maximumDrawdown },
-    { name: '盈利次数', value: numOfProfits },
-    { name: '亏损次数', value: numOfLosses },
-    { name: '胜率', value: winRate },
-    { name: '盈亏比', value: profitLossRatio },
-    { name: '夏普率', value: sharpeRatio },
+    { name: '策略年化收益率', value: annualizedReturn, key: '策略年化收益率' },
+    { name: '最大回撒', value: maximumDrawdown, key: '最大回撒' },
+    { name: '盈利次数', value: numOfProfits, key: '盈利次数' },
+    { name: '亏损次数', value: numOfLosses, key: '亏损次数' },
+    { name: '胜率', value: winRate, key: '胜率' },
+    { name: '盈亏比', value: profitLossRatio, key: '盈亏比' },
+    { name: '夏普率', value: sharpeRatio, key: '夏普率' },
   ];
 
   const columns = [

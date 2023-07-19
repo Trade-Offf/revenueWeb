@@ -27,7 +27,6 @@ function getChartDate(data) {
   const { results, totalRevenue } = data;
   let transactionLists = [];
   let totalRevenueList = [];
-
   results?.map((item) => {
     transactionLists.push({ name: item.symbol, revenueList: item.revenueList });
   });

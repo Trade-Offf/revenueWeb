@@ -18,23 +18,21 @@ export default function TradeList(props) {
     shortSymbol,
     setLongSymbol,
     setShortSymbol,
+    selectDate,
+    setSelectDate,
   } = props;
   const [kLineType, setKLineTypeOption] = useState('1h');
+  const { startDate, endDate } = selectDate;
 
-  // 回测配置项
-  const [selectDate, setSelectDate] = useState({
-    startDate: '2023-01-01',
-    endDate: '2023-06-01',
-  });
   const params = {
     kLineType,
     longSymbol,
     shortSymbol,
-    ...selectDate,
+    startDate: startDate.format(dateFormat),
+    endDate: endDate.format(dateFormat),
   };
 
   const onChange = (e, type) => {
-    console.log('37,', e, type);
     if (type == 'long') {
       setLongSymbol(e);
     }
@@ -50,7 +48,6 @@ export default function TradeList(props) {
       value: item,
     });
   });
-  console.log('57', option);
 
   const kLineTypeOption = [
     { value: '1h', label: '1h' },
@@ -64,13 +61,8 @@ export default function TradeList(props) {
         <div className={styles.trade_config_item}>
           <span>回测时间：</span>
           <RangePicker
-            defaultValue={[
-              dayjs('2023-01-01', dateFormat),
-              dayjs('2023-06-01', dateFormat),
-            ]}
-            onChange={(dates, dateStrings) =>
-              onSelectDateChange(dates, dateStrings, setSelectDate)
-            }
+            defaultValue={[startDate, endDate]}
+            onChange={(dates) => onSelectDateChange(dates, setSelectDate)}
           />
         </div>
 
