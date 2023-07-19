@@ -50,6 +50,9 @@ export default function Detail(props) {
       <div className={styles.detail_title}>风险分析</div>
       <Table
         dataSource={detaliData}
+        rowClassName={(record, index) =>
+          index % 2 === 0 ? styles.light_row : styles.dark_row
+        }
         columns={columns}
         bordered
         pagination={false}

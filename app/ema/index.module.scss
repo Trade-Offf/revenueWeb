@@ -166,23 +166,11 @@
     margin-bottom: 12px;
   }
 
-  // &_content {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, 1fr);
-  //   border-collapse: collapse;
-  //   font-size: 16px;
-  //   .item {
-  //     width: 100%;
-  //     position: relative;
-  //     border: 1px solid #ddd;
-  //     border-collapse: collapse;
-  //   }
+  .light_row {
+    background-color: #ffffff;
+  }
 
-  //   .name {
-  //     justify-self: start;
-  //   }
-  //   .value {
-  //     justify-self: end;
-  //   }
-  // }
+  .dark_row {
+    background-color: #f5f5f5;
+  }
 }

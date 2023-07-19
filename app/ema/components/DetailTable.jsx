@@ -51,6 +51,9 @@ export default function Detail(props) {
       <Table
         dataSource={detaliData}
         columns={columns}
+        rowClassName={(record, index) =>
+          index % 2 === 0 ? styles.light_row : styles.dark_row
+        }
         bordered
         pagination={false}
         size={'middle'}
