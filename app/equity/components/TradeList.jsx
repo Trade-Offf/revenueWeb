@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Checkbox, Button, DatePicker, Select, Divider, Space } from 'antd';
+import { Button, DatePicker, Select } from 'antd';
 import { handleGetRevenueData, onSelectDateChange } from '../hooks';
-import dayjs from 'dayjs';
 import styles from '../index.module.scss';
 
 const { RangePicker } = DatePicker;
@@ -22,12 +21,16 @@ export default function TradeList(props) {
     setSelectDate,
   } = props;
   const [kLineType, setKLineTypeOption] = useState('1h');
+  const [stopProfit, setStopProfit] = useState('0.05');
+  const [stopLoss, setStopLoss] = useState('0.05');
   const { startDate, endDate } = selectDate;
 
   const params = {
     kLineType,
     longSymbol,
     shortSymbol,
+    stopProfit,
+    stopLoss,
     startDate: startDate.format(dateFormat),
     endDate: endDate.format(dateFormat),
   };
@@ -48,11 +51,21 @@ export default function TradeList(props) {
       value: item,
     });
   });
-
+  // k线类型
   const kLineTypeOption = [
     { value: '1h', label: '1h' },
     { value: '2h', label: '2h' },
     { value: '4h', label: '4h' },
+  ];
+  // 止盈百分比
+  const stopProfitOption = [
+    { value: '0.05', label: '5%' },
+    { value: '0.1', label: '10%' },
+  ];
+  // 止损百分比
+  const stopLossOption = [
+    { value: '0.05', label: '5%' },
+    { value: '0.1', label: '10%' },
   ];
 
   return tradeList.length > 0 ? (
@@ -83,7 +96,7 @@ export default function TradeList(props) {
           开始回测
         </Button>
       </div>
-      <div className={styles.trade_select}>
+      <div className={styles.trade_config}>
         <div className={styles.trade_select_item}>
           <span>做多币种：</span>
           <Select
@@ -127,6 +140,26 @@ export default function TradeList(props) {
               );
             })}
           </Select>
+        </div>
+      </div>
+      <div className={styles.trade_select}>
+        <div className={styles.trade_config_item}>
+          <span>止盈比例：</span>
+          <Select
+            defaultValue={stopProfit}
+            style={{ width: 140 }}
+            onChange={(e) => setStopProfit(e)}
+            options={stopProfitOption}
+          />
+        </div>
+        <div className={styles.trade_config_item}>
+          <span>止损比例：</span>
+          <Select
+            defaultValue={stopLoss}
+            style={{ width: 140 }}
+            onChange={(e) => setStopLoss(e)}
+            options={stopLossOption}
+          />
         </div>
       </div>
     </div>

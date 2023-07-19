@@ -12,7 +12,15 @@ async function initTradeList() {
 }
 
 async function getRevenueData(params) {
-  const { startDate, endDate, longSymbol, shortSymbol, kLineType } = params;
+  const {
+    startDate,
+    endDate,
+    longSymbol,
+    shortSymbol,
+    kLineType,
+    stopProfit,
+    stopLoss,
+  } = params;
 
   const response = await request.post(
     '/quant/delatHedging',
@@ -20,8 +28,8 @@ async function getRevenueData(params) {
       kLineType: kLineType,
       startDate: startDate,
       endDate: endDate,
-      takeProfit: 0.05,
-      stopLoss: 0.05,
+      takeProfit: stopProfit,
+      stopLoss: stopLoss,
       longSymbol: longSymbol,
       shortSymbol: shortSymbol,
     })

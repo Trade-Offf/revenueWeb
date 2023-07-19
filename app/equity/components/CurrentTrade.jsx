@@ -7,10 +7,10 @@ export default function TradeList(props) {
 
   return (
     <div className={styles.current}>
-      <span>做空指标:</span>
-      <Tag className={styles.tag}>{shortSymbol}</Tag>
       <span>做多指标:</span>
       <Tag className={styles.tag}>{longSymbol}</Tag>
+      <span>做空指标:</span>
+      <Tag className={styles.tag}>{shortSymbol}</Tag>
     </div>
   );
 }
