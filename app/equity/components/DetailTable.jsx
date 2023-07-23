@@ -29,17 +29,19 @@ export default function Detail(props) {
 
   const detaliData = [
     { name: '策略年化收益率', value: annualizedReturn, key: '策略年化收益率' },
-    { name: '夏普率', value: sharpeRatio, key: '夏普率' },
-    { name: '策略胜率', value: winRate, key: '策略胜率' },
     { name: '平均交易收益率', value: aveProfitOrLoss, key: '平均交易收益率' },
     {
       name: '单笔交易最大收益率',
       value: singleMaxProfit,
       key: '单笔交易最大收益率',
     },
-    // { name: '盈亏比', value: profitLossRatio, key: '盈亏比' },
     { name: '盈利次数', value: numOfProfits, key: '盈利次数' },
     { name: '加仓次数', value: numOfLosses, key: '加仓次数' },
+    {
+      name: '年化收益率/最大回撒',
+      value: annualizedReturnLossRatio,
+      key: '年化收益率/最大回撒',
+    },
     { name: '最大回撒', value: maximumDrawdown, key: '最大回撒' },
     {
       name: '最大回撒开始时间',
@@ -50,11 +52,6 @@ export default function Detail(props) {
       name: '最大回撒结束时间',
       value: drawDownEndDate,
       key: '最大回撒结束时间',
-    },
-    {
-      name: '年化收益率/最大回撒',
-      value: annualizedReturnLossRatio,
-      key: '年化收益率/最大回撒',
     },
   ];
 
