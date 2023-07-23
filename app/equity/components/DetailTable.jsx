@@ -29,6 +29,12 @@ export default function Detail(props) {
 
   const detaliData = [
     { name: '策略年化收益率', value: annualizedReturn, key: '策略年化收益率' },
+    { name: '最大回撒', value: maximumDrawdown, key: '最大回撒' },
+    {
+      name: '年化收益率/最大回撒',
+      value: annualizedReturnLossRatio,
+      key: '年化收益率/最大回撒',
+    },
     { name: '平均交易收益率', value: aveProfitOrLoss, key: '平均交易收益率' },
     {
       name: '单笔交易最大收益率',
@@ -37,12 +43,7 @@ export default function Detail(props) {
     },
     { name: '盈利次数', value: numOfProfits, key: '盈利次数' },
     { name: '加仓次数', value: numOfLosses, key: '加仓次数' },
-    {
-      name: '年化收益率/最大回撒',
-      value: annualizedReturnLossRatio,
-      key: '年化收益率/最大回撒',
-    },
-    { name: '最大回撒', value: maximumDrawdown, key: '最大回撒' },
+
     {
       name: '最大回撒开始时间',
       value: drawDownStartDate,
