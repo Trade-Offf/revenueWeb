@@ -58,7 +58,6 @@ const Equity = () => {
       setRevenueData
     );
   }, []);
-  console.log('revenueData', revenueData);
 
   return (
     <Container>
@@ -74,7 +73,7 @@ const Equity = () => {
         <div className={styles.wrap_left}>
           {/* 回测图表 */}
           <div className={styles.chart}>
-            <EquityChart revenueData={revenueData} tradeList={tradeList} />
+            <EquityChart revenueData={revenueData} tradeList={tradeList} longSymbol={longSymbol} shortSymbol={shortSymbol}/>
           </div>
 
           {/* 策略介绍与回测配置 */}
