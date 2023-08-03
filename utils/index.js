@@ -22,43 +22,33 @@ function clearTradeList(list) {
   return newTradeList;
 }
 
-// 获取每个交易对和拟合总收益率数据
+// 获取图表数据
 function getChartDate(data) {
-  const { results, totalRevenue } = data;
-  let transactionLists = [];
+  const { totalRevenue, hodlRevenueList } = data;
   let totalRevenueList = [];
-  results?.map((item) => {
-    transactionLists.push({ name: item.symbol, revenueList: item.revenueList });
-  });
+  let holdRevenueList = [];
+
+  for (let key in hodlRevenueList) {
+    holdRevenueList.push({ name: key, revenueList: hodlRevenueList[key] });
+  }
   totalRevenueList.push({ name: 'Total', revenueList: totalRevenue });
-  return { transactionLists, totalRevenueList };
+  return { totalRevenueList, holdRevenueList };
 }
 
 // 获取数据的 x 轴和 y 轴
 function getXYData(chartList) {
   let xAxisDateList = [];
-  let seriesList = [];
+  let yAxisDateList = [];
 
-  chartList[0]?.revenueList?.map((item) => {
+  chartList?.revenueList?.map((item) => {
     const year = item?.date.substring(0, 4);
     const month = item?.date.substring(4, 6);
     const day = item?.date.substring(6, 8);
     xAxisDateList.push(`${year}-${month}-${day}`);
+    yAxisDateList.push((Number(item.revenueRate) * 100).toFixed(3));
   });
 
-  chartList.map((item) => {
-    const { revenueList } = item;
-    let yAxisDateList = [];
-    revenueList?.map((item) => {
-      yAxisDateList.push((Number(item.revenueRate) * 100).toFixed(3));
-    });
-    seriesList.push({
-      name: item.name,
-      type: 'line',
-      data: yAxisDateList,
-    });
-  });
-  return { xAxisDateList, seriesList };
+  return { xAxisDateList, yAxisDateList };
 }
 
 // 首字母分类配置项

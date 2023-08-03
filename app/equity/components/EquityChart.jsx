@@ -6,11 +6,32 @@ const EmaChart = (props) => {
   const { revenueData, longSymbol, shortSymbol } = props;
   const longStr = `${longSymbol}多持`;
   const shortStr = `${shortSymbol}空持`;
-  let { totalRevenueList = [] } = getChartDate(revenueData);
-  const { xAxisDateList, seriesList } = getXYData(totalRevenueList);
+  let { totalRevenueList = [], holdRevenueList = [] } =
+    getChartDate(revenueData);
+  const { xAxisDateList: xTotal, yAxisDateList: yTotal } = getXYData(
+    totalRevenueList[0]
+  );
+  let yLong = [];
+  let yShort = [];
+  let yBtc = [];
+
+  holdRevenueList.map((item) => {
+    if (item.name === longSymbol) {
+      const { yAxisDateList } = getXYData(item);
+      yLong = yAxisDateList;
+    }
+    if (item.name === shortSymbol) {
+      const { yAxisDateList } = getXYData(item);
+      yShort = yAxisDateList;
+    }
+    if (item.name === 'BTC-USDT') {
+      const { yAxisDateList } = getXYData(item);
+      yBtc = yAxisDateList;
+    }
+  });
   const selected = {
     策略线: true,
-    BTC基线: true,
+    BTC长持: true,
     [longStr]: false,
     [shortStr]: false,
   };
@@ -20,7 +41,7 @@ const EmaChart = (props) => {
       trigger: 'axis',
     },
     legend: {
-      data: ['策略线', 'BTC基线', longStr, shortStr],
+      data: ['策略线', 'BTC长持', longStr, shortStr],
       selected,
     },
     grid: {
@@ -32,7 +53,7 @@ const EmaChart = (props) => {
     },
     xAxis: {
       type: 'category',
-      data: xAxisDateList,
+      data: xTotal,
     },
     yAxis: {
       type: 'value',
@@ -44,24 +65,22 @@ const EmaChart = (props) => {
       {
         name: '策略线',
         type: 'line',
-        data: [...seriesList[0].data],
+        data: [...yTotal],
       },
       {
-        name: 'BTC基线',
+        name: 'BTC长持',
         type: 'line',
-        data: [...seriesList[0].data],
+        data: [...yBtc],
       },
       {
         name: longStr,
         type: 'line',
-        areaStyle: { normal: {} },
-        data: [220, 182, 191, 234, 290, 330, 310],
+        data: [...yLong],
       },
       {
         name: shortStr,
         type: 'line',
-        areaStyle: { normal: {} },
-        data: [150, 232, 201, 154, 190, 330, 410],
+        data: [...yShort],
       },
     ],
   };
