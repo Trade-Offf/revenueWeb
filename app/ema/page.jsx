@@ -75,7 +75,7 @@ const Ema = () => {
                 <div className={styles.box}>
                   <div className={styles.box_title}>策略思想</div>
                   <div className={styles.box_content}>
-                    做多价值币，做空垃圾币，是一个长赢策略
+                    做多价值币，做空垃圾币，中性策略适合震荡、熊市和小幅上涨，害怕大幅上涨行情。（大牛市时山寨币会比主流币涨得更多）
                   </div>
                 </div>
                 <div className={styles.box}>
